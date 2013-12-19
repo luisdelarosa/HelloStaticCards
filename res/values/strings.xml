@@ -1,5 +1,7 @@
 <resources>
 
     <string name="app_name">HelloStaticCards</string>
-
+	<string name="voice_trigger">create a static card</string>
+	<string name="voice_recognizer_prompt">what would you like it to say?</string>
+	
 </resources>
