@@ -25,11 +25,16 @@ public class InitialService extends Service {
 	    ArrayList<String> voiceResults = intent.getExtras()
 	            .getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
 	    
+	    // Create a static card from the voice results and publish to the timeline
 	    Card staticCard = createStaticCard(voiceResults);
 	    long staticCardId = publishStaticCardToTimeline(staticCard);
 	    Log.d(LOG_TAG, String.format("Published static card to the timeline with id:%d and text:%s", staticCardId, staticCard.getText()));
 	    
-	    return START_STICKY;
+	    // Clean up now that we've done our work
+	    stopSelf();
+	    
+	    // Don't restart this service if it gets killed
+	    return START_NOT_STICKY;
 	}
 
 	private long publishStaticCardToTimeline(Card staticCard) {
